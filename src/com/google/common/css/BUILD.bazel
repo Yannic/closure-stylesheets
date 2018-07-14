@@ -44,9 +44,9 @@ java_library(
     ],
     visibility = ["//visibility:public"],
     deps = [
-        "@com_google_auto_value//jar",
-        "@com_google_code_findbugs_jsr305//jar",
-        "@com_google_code_gson//jar",
-        "@com_google_guava//jar",
+        "@com_google_auto_value",
+        "@com_google_code_findbugs_jsr305",
+        "@com_google_code_gson",
+        "@com_google_guava",
     ],
 )

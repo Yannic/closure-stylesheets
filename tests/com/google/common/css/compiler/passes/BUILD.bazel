@@ -38,9 +38,9 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast:base",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
-        "@org_mockito_all//jar",
+        "@com_google_guava",
+        "@com_google_truth",
+        "@org_mockito_all",
     ],
 )
 
@@ -67,7 +67,7 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/passes/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -82,8 +82,8 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast:base",
-        "@com_google_truth//jar",
-        "@org_mockito_all//jar",
+        "@com_google_truth",
+        "@org_mockito_all",
     ],
 )
 
@@ -98,8 +98,8 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/testing",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
+        "@com_google_guava",
+        "@com_google_truth",
     ],
 )
 
@@ -111,11 +111,12 @@ java_test(
     ],
     test_class = "com.google.common.css.compiler.passes.CheckDependencyNodesTest",
     deps = [
+        "//src/com/google/common/css",
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
+        "@com_google_guava",
+        "@com_google_truth",
     ],
 )
 
@@ -127,11 +128,12 @@ java_test(
     ],
     test_class = "com.google.common.css.compiler.passes.CheckMissingRequireTest",
     deps = [
+        "//src/com/google/common/css",
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
+        "@com_google_guava",
+        "@com_google_truth",
     ],
 )
 
@@ -144,7 +146,7 @@ java_test(
     test_class = "com.google.common.css.compiler.passes.CodeBufferTest",
     deps = [
         "//src/com/google/common/css/compiler/passes",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -159,8 +161,8 @@ java_test(
         "//src/com/google/common/css",
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
+        "@com_google_guava",
+        "@com_google_truth",
     ],
 )
 
@@ -175,7 +177,7 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/passes/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -190,9 +192,9 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast:base",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
-        "@org_mockito_all//jar",
+        "@com_google_guava",
+        "@com_google_truth",
+        "@org_mockito_all",
     ],
 )
 
@@ -208,8 +210,8 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast:base",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
+        "@com_google_guava",
+        "@com_google_truth",
     ],
 )
 
@@ -224,7 +226,7 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -239,7 +241,7 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -254,7 +256,7 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -269,7 +271,7 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -284,7 +286,7 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -299,7 +301,7 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/passes/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -314,8 +316,8 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/passes/testing",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
+        "@com_google_guava",
+        "@com_google_truth",
     ],
 )
 
@@ -329,7 +331,7 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -344,7 +346,7 @@ java_test(
         "//src/com/google/common/css",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/passes/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -361,8 +363,8 @@ java_test(
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast:base",
         "//tests/com/google/common/css/compiler/passes/testing",
-        "@com_google_truth//jar",
-        "@org_mockito_all//jar",
+        "@com_google_truth",
+        "@org_mockito_all",
     ],
 )
 
@@ -376,7 +378,7 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -390,8 +392,8 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast:base",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
+        "@com_google_guava",
+        "@com_google_truth",
     ],
 )
 
@@ -405,7 +407,7 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast:base",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -420,8 +422,8 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast:base",
-        "@com_google_truth//jar",
-        "@org_mockito_all//jar",
+        "@com_google_truth",
+        "@org_mockito_all",
     ],
 )
 
@@ -435,7 +437,7 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/passes/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -449,8 +451,8 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
-        "@com_google_truth//jar",
-        "@org_mockito_all//jar",
+        "@com_google_truth",
+        "@org_mockito_all",
     ],
 )
 
@@ -464,7 +466,7 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast:base",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -478,9 +480,9 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
-        "@org_mockito_all//jar",
+        "@com_google_guava",
+        "@com_google_truth",
+        "@org_mockito_all",
     ],
 )
 
@@ -495,8 +497,8 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/passes/testing",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
+        "@com_google_guava",
+        "@com_google_truth",
     ],
 )
 
@@ -512,8 +514,8 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/passes/testing",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
+        "@com_google_guava",
+        "@com_google_truth",
     ],
 )
 
@@ -527,7 +529,7 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -541,8 +543,8 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
+        "@com_google_guava",
+        "@com_google_truth",
     ],
 )
 
@@ -556,7 +558,7 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast:base",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -571,8 +573,8 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast:base",
-        "@com_google_truth//jar",
-        "@org_mockito_all//jar",
+        "@com_google_truth",
+        "@org_mockito_all",
     ],
 )
 
@@ -588,7 +590,7 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -602,8 +604,8 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/passes/testing",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
+        "@com_google_guava",
+        "@com_google_truth",
     ],
 )
 
@@ -618,8 +620,8 @@ java_test(
         "//src/com/google/common/css",
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
+        "@com_google_guava",
+        "@com_google_truth",
     ],
 )
 
@@ -634,7 +636,7 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast:base",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -649,7 +651,7 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/passes/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -664,8 +666,8 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/passes/testing",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
+        "@com_google_guava",
+        "@com_google_truth",
     ],
 )
 
@@ -680,9 +682,9 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/passes/testing",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
-        "@org_mockito_all//jar",
+        "@com_google_guava",
+        "@com_google_truth",
+        "@org_mockito_all",
     ],
 )
 
@@ -698,9 +700,9 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast:base",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
-        "@org_mockito_all//jar",
+        "@com_google_guava",
+        "@com_google_truth",
+        "@org_mockito_all",
     ],
 )
 
@@ -717,9 +719,9 @@ java_test(
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast:base",
         "//tests/com/google/common/css/compiler/passes/testing",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
-        "@org_mockito_all//jar",
+        "@com_google_guava",
+        "@com_google_truth",
+        "@org_mockito_all",
     ],
 )
 
@@ -731,11 +733,12 @@ java_test(
     ],
     test_class = "com.google.common.css.compiler.passes.ProcessComponentsTest",
     deps = [
+        "//src/com/google/common/css",
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/passes/testing",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
+        "@com_google_guava",
+        "@com_google_truth",
     ],
 )
 
@@ -750,7 +753,7 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -764,7 +767,7 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -780,8 +783,8 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/testing",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
+        "@com_google_guava",
+        "@com_google_truth",
     ],
 )
 
@@ -795,7 +798,7 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/passes/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -810,8 +813,8 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast:base",
-        "@com_google_truth//jar",
-        "@org_mockito_all//jar",
+        "@com_google_truth",
+        "@org_mockito_all",
     ],
 )
 
@@ -825,7 +828,7 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/passes/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -841,7 +844,7 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -855,7 +858,7 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/passes/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -871,8 +874,8 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast:base",
-        "@com_google_truth//jar",
-        "@org_mockito_all//jar",
+        "@com_google_truth",
+        "@org_mockito_all",
     ],
 )
 
@@ -887,7 +890,7 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/passes/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -904,8 +907,8 @@ java_test(
         "//src/com/google/common/css/compiler/gssfunctions",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
+        "@com_google_guava",
+        "@com_google_truth",
     ],
 )
 
@@ -921,8 +924,8 @@ java_test(
         "//src/com/google/common/css/compiler/gssfunctions",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
+        "@com_google_guava",
+        "@com_google_truth",
     ],
 )
 
@@ -937,8 +940,8 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
+        "@com_google_guava",
+        "@com_google_truth",
     ],
 )
 
@@ -952,7 +955,7 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/passes/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -967,9 +970,9 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast:base",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
-        "@org_mockito_all//jar",
+        "@com_google_guava",
+        "@com_google_truth",
+        "@org_mockito_all",
     ],
 )
 
@@ -983,7 +986,7 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -997,7 +1000,7 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -1014,8 +1017,8 @@ java_test(
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast:base",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
+        "@com_google_guava",
+        "@com_google_truth",
     ],
 )
 
@@ -1029,8 +1032,8 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
-        "@com_google_truth//jar",
-        "@org_mockito_all//jar",
+        "@com_google_truth",
+        "@org_mockito_all",
     ],
 )
 
@@ -1044,7 +1047,7 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/passes/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -1058,7 +1061,7 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast:base",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -1072,8 +1075,8 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
+        "@com_google_guava",
+        "@com_google_truth",
     ],
 )
 
@@ -1087,7 +1090,7 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )
 
@@ -1102,8 +1105,8 @@ java_test(
         "//src/com/google/common/css/compiler/ast",
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_guava//jar",
-        "@com_google_truth//jar",
+        "@com_google_guava",
+        "@com_google_truth",
     ],
 )
 
@@ -1117,6 +1120,6 @@ java_test(
     deps = [
         "//src/com/google/common/css/compiler/passes",
         "//tests/com/google/common/css/compiler/ast/testing",
-        "@com_google_truth//jar",
+        "@com_google_truth",
     ],
 )

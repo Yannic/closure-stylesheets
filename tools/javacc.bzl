@@ -44,7 +44,6 @@ def _javacc_impl(ctx):
 
 javacc = rule(
     implementation = _javacc_impl,
-    output_to_genfiles = True,
     attrs={
         "src": attr.label(
             mandatory = True,

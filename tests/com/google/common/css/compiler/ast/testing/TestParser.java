@@ -68,7 +68,7 @@ public class TestParser {
   }
 
   protected void runPasses(CssTree tree) {
-    new CreateStandardAtRuleNodes(tree.getMutatingVisitController(), errorManager).runPass();
+    new CreateStandardAtRuleNodes().run(null, tree, errorManager);
     new FixupFontDeclarations(InputMode.CSS, errorManager, tree).runPass();
   }
 

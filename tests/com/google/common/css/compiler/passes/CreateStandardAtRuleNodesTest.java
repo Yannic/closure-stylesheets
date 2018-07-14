@@ -44,9 +44,8 @@ public class CreateStandardAtRuleNodesTest extends PassesTestBase {
 
   @Override
   protected void runPass() {
-    CreateStandardAtRuleNodes pass = new CreateStandardAtRuleNodes(
-        tree.getMutatingVisitController(), errorManager);
-    pass.runPass();
+    CreateStandardAtRuleNodes pass = new CreateStandardAtRuleNodes();
+    pass.run(null, tree, errorManager);
   }
 
   @Test

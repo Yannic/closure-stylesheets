@@ -200,8 +200,7 @@ public class MarkNonFlippableNodesTest extends PassesTestBase {
         "}",
         ".CSS_RULE_3 { /* @noflip */top : expression('cond') }"
         ));
-    new CreateStandardAtRuleNodes(tree.getMutatingVisitController(),
-        errorManager).runPass();
+    new CreateStandardAtRuleNodes().run(null, tree, errorManager);
     runPass();
 
     CssNode rule = tree.getRoot().getBody().getChildren().get(0);

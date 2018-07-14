@@ -19,6 +19,8 @@ package com.google.common.css.compiler.passes;
 import static com.google.common.truth.Truth.assertThat;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.common.css.JobDescription;
+import com.google.common.css.JobDescriptionBuilder;
 import com.google.common.css.compiler.ast.GssParserException;
 import com.google.common.css.compiler.ast.testing.NewFunctionalTestBase;
 import org.junit.Test;
@@ -37,9 +39,9 @@ public class CheckDependencyNodesTest extends NewFunctionalTestBase {
 
   @Override
   protected void runPass() {
-    processDependencyNodes = new CheckDependencyNodes(
-        tree.getMutatingVisitController(), errorManager, false);
-    processDependencyNodes.runPass();
+    JobDescription job = new JobDescriptionBuilder().getJobDescription();
+    processDependencyNodes = new CheckDependencyNodes();
+    processDependencyNodes.run(job, tree, errorManager);
   }
 
   @Test

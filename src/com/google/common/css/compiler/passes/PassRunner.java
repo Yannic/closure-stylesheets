@@ -17,13 +17,13 @@
 package com.google.common.css.compiler.passes;
 
 import com.google.common.base.Predicates;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.css.JobDescription;
 import com.google.common.css.PrefixingSubstitutionMap;
 import com.google.common.css.RecordingSubstitutionMap;
 import com.google.common.css.SubstitutionMap;
-import com.google.common.css.compiler.ast.CssCompilerPass;
 import com.google.common.css.compiler.ast.CssTree;
 import com.google.common.css.compiler.ast.ErrorManager;
 import com.google.common.css.compiler.ast.GssFunction;
@@ -62,10 +62,8 @@ public class PassRunner {
    * per input file.
    */
   public void runPasses(CssTree cssTree) {
-    new CheckDependencyNodes(cssTree.getMutatingVisitController(),
-        errorManager, job.suppressDependencyCheck).runPass();
-    new CreateStandardAtRuleNodes(cssTree.getMutatingVisitController(),
-        errorManager).runPass();
+    new CheckDependencyNodes().run(job, cssTree, errorManager);
+    new CreateStandardAtRuleNodes().run(job, cssTree, errorManager);
     new CreateMixins(cssTree.getMutatingVisitController(),
         errorManager).runPass();
     new CreateDefinitionNodes(cssTree.getMutatingVisitController(),
@@ -100,26 +98,12 @@ public class PassRunner {
         cssTree.getMutatingVisitController(),
         ImmutableSet.copyOf(job.trueConditionNames)).runPass();
 
-    // Collect mixin definitions and replace mixins
-    CollectMixinDefinitions collectMixinDefinitions =
-        new CollectMixinDefinitions(cssTree.getMutatingVisitController(),
-            errorManager);
-    collectMixinDefinitions.runPass();
-    new ReplaceMixins(cssTree.getMutatingVisitController(), errorManager,
-        collectMixinDefinitions.getDefinitions()).runPass();
+    new CollectAndReplaceMixins().run(job, cssTree, errorManager);
 
     new ProcessComponents<Object>(cssTree.getMutatingVisitController(),
         errorManager).runPass();
-    // Collect constant definitions.
-    CollectConstantDefinitions collectConstantDefinitionsPass =
-        new CollectConstantDefinitions(cssTree);
-    collectConstantDefinitionsPass.runPass();
-    // Replace constant references.
-    ReplaceConstantReferences replaceConstantReferences =
-        new ReplaceConstantReferences(cssTree,
-            collectConstantDefinitionsPass.getConstantDefinitions(),
-            true /* removeDefs */, errorManager, job.allowUndefinedConstants);
-    replaceConstantReferences.runPass();
+
+    new CollectAndReplaceConstants().run(job, cssTree, errorManager);
 
     Map<String, GssFunction> gssFunctionMap = getGssFunctionMap();
     new ResolveCustomFunctionNodes(
@@ -128,20 +112,8 @@ public class PassRunner {
         job.allowedNonStandardFunctions)
         .runPass();
 
-    if (job.simplifyCss) {
-      // Eliminate empty rules.
-      new EliminateEmptyRulesetNodes(cssTree.getMutatingVisitController())
-          .runPass();
-      // Eliminating units for zero values.
-      new EliminateUnitsFromZeroNumericValues(
-          cssTree.getMutatingVisitController()).runPass();
-      // Optimize color values.
-      new ColorValueOptimizer(
-          cssTree.getMutatingVisitController()).runPass();
-      // Compress redundant top-right-bottom-left value lists.
-      new AbbreviatePositionalValues(
-          cssTree.getMutatingVisitController()).runPass();
-    }
+    new SimplifyCss().run(job, cssTree, errorManager);
+
     if (job.eliminateDeadStyles) {
       // Report errors for duplicate declarations
       new DisallowDuplicateDeclarations(
@@ -234,5 +206,26 @@ public class PassRunner {
     }
 
     return map;
+  }
+
+  /**
+   * TODO(yannic): Document, move to own file and make public.
+   */
+  private static class MultiPassRunner implements NewCssCompilerPass {
+    private final ImmutableList<NewCssCompilerPass> passes;
+
+    public MultiPassRunner(ImmutableList<NewCssCompilerPass> passes) {
+      this.passes = passes;
+    }
+
+    @Override
+    public boolean run(JobDescription job, CssTree cssTree, ErrorManager errorManager) {
+      for (NewCssCompilerPass pass : passes) {
+        if (!pass.run(job, cssTree, errorManager)) {
+          return false;
+        }
+      }
+      return true;
+    }
   }
 }

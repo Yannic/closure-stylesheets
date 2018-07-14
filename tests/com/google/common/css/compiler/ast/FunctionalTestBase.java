@@ -59,7 +59,7 @@ public class FunctionalTestBase extends FunctionalTestCommonBase {
     pass3.runPass();
     CreateForLoopNodes pass4 = new CreateForLoopNodes(vc, errorManager);
     pass4.runPass();
-    new CreateStandardAtRuleNodes(vc, errorManager).runPass();
+    new CreateStandardAtRuleNodes().run(null, newTree, errorManager);
   }
 
   protected String getPrettyPrintedTree(CssTree tree) {

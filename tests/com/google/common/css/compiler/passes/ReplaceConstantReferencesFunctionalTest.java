@@ -223,7 +223,7 @@ public class ReplaceConstantReferencesFunctionalTest extends PassesTestBase {
   @Override
   protected void runPass() {
     new CreateDefinitionNodes(tree.getMutatingVisitController(), errorManager).runPass();
-    new CreateStandardAtRuleNodes(tree.getMutatingVisitController(), errorManager).runPass();
+    new CreateStandardAtRuleNodes().run(null, tree, errorManager);
     new CreateConstantReferences(tree.getMutatingVisitController()).runPass();
     new CreateConditionalNodes(tree.getMutatingVisitController(), errorManager).runPass();
     CollectConstantDefinitions defPass = new CollectConstantDefinitions(tree);

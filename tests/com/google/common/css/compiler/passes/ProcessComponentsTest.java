@@ -25,6 +25,9 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+import com.google.common.css.JobDescription;
+import com.google.common.css.JobDescriptionBuilder;
 import com.google.common.css.compiler.ast.CssCommentNode;
 import com.google.common.css.compiler.ast.CssDefinitionNode;
 import com.google.common.css.compiler.ast.CssLiteralNode;
@@ -35,6 +38,7 @@ import com.google.common.css.compiler.ast.CssValueNode;
 import com.google.common.css.compiler.ast.DefaultTreeVisitor;
 import com.google.common.css.compiler.ast.ErrorManager;
 import com.google.common.css.compiler.ast.GssFunction;
+import com.google.common.css.compiler.passes.NewCssCompilerPass.WrapLegacyCssCompilerPass;
 import com.google.common.css.compiler.passes.testing.PassesTestBase;
 import java.util.ArrayList;
 import java.util.List;
@@ -319,15 +323,28 @@ public class ProcessComponentsTest extends PassesTestBase {
 
   @Override
   protected void runPass() {
-    new CreateDefinitionNodes(tree.getMutatingVisitController(), errorManager).runPass();
-    new MapChunkAwareNodesToChunk<String>(tree, FILE_TO_CHUNK).runPass();
-    new CreateConstantReferences(tree.getMutatingVisitController()).runPass();
-    new CreateConditionalNodes(tree.getMutatingVisitController(), errorManager).runPass();
-    new CheckDependencyNodes(tree.getMutatingVisitController(), errorManager).runPass();
-    new CreateComponentNodes(tree.getMutatingVisitController(), errorManager).runPass();
-    ProcessComponents<String> processComponentsPass = new ProcessComponents<String>(
-        tree.getMutatingVisitController(), errorManager, FILE_TO_CHUNK);
-    processComponentsPass.runPass();
+    List<NewCssCompilerPass> l = Lists.newArrayList();
+    l.add(new WrapLegacyCssCompilerPass(
+        new CreateDefinitionNodes(tree.getMutatingVisitController(), errorManager)));
+    l.add(
+        new WrapLegacyCssCompilerPass(new MapChunkAwareNodesToChunk<String>(tree, FILE_TO_CHUNK)));
+    l.add(new WrapLegacyCssCompilerPass(
+        new CreateConstantReferences(tree.getMutatingVisitController())));
+    l.add(new WrapLegacyCssCompilerPass(
+        new CreateConditionalNodes(tree.getMutatingVisitController(), errorManager)));
+    l.add(new CheckDependencyNodes());
+    l.add(new WrapLegacyCssCompilerPass(
+        new CreateComponentNodes(tree.getMutatingVisitController(), errorManager)));
+    l.add(new WrapLegacyCssCompilerPass(
+        new ProcessComponents<String>(
+            tree.getMutatingVisitController(), errorManager, FILE_TO_CHUNK)));
+
+    JobDescriptionBuilder jobBuilder = new JobDescriptionBuilder();
+    jobBuilder.setSuppressDependencyCheck(true);
+    JobDescription job = jobBuilder.getJobDescription();
+    for (NewCssCompilerPass pass : l) {
+      pass.run(job, tree, errorManager);
+    }
   }
 
   protected void testTreeConstructionWithResolve(

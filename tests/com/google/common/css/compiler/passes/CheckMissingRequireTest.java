@@ -20,9 +20,11 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
-import com.google.common.css.compiler.ast.CssCompilerPass;
+import com.google.common.css.JobDescription;
+import com.google.common.css.JobDescriptionBuilder;
 import com.google.common.css.compiler.ast.GssParserException;
 import com.google.common.css.compiler.ast.testing.NewFunctionalTestBase;
+import com.google.common.css.compiler.passes.NewCssCompilerPass.WrapLegacyCssCompilerPass;
 import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,29 +38,38 @@ import org.junit.runners.JUnit4;
 public class CheckMissingRequireTest extends NewFunctionalTestBase {
 
   protected void runPasses(TestErrorManager errorMgr) {
-    List<CssCompilerPass> l = Lists.newArrayList();
-    l.add(new CreateMixins(tree.getMutatingVisitController(), errorMgr));
-    l.add(new CreateDefinitionNodes(tree.getMutatingVisitController(), errorMgr));
-    l.add(new CreateConstantReferences(tree.getMutatingVisitController()));
-    l.add(new CheckDependencyNodes(tree.getMutatingVisitController(), errorMgr));
-    l.add(new CreateComponentNodes(tree.getMutatingVisitController(), errorMgr));
-    CollectMixinDefinitions collectMixins =
-        new CollectMixinDefinitions(tree.getMutatingVisitController(), errorMgr);
-    l.add(collectMixins);
-    l.add(new ProcessComponents<Object>(tree.getMutatingVisitController(), errorMgr, null));
-    for (CssCompilerPass pass : l) {
-      pass.runPass();
-    }
+    List<NewCssCompilerPass> l = Lists.newArrayList();
+    l.add(new WrapLegacyCssCompilerPass(
+          new CreateMixins(tree.getMutatingVisitController(), errorMgr)));
+    l.add(new WrapLegacyCssCompilerPass(
+          new CreateDefinitionNodes(tree.getMutatingVisitController(), errorMgr)));
+    l.add(new WrapLegacyCssCompilerPass(
+          new CreateConstantReferences(tree.getMutatingVisitController())));
+    l.add(new CheckDependencyNodes());
+    l.add(new WrapLegacyCssCompilerPass(
+          new CreateComponentNodes(tree.getMutatingVisitController(), errorMgr)));
+    l.add(new WrapLegacyCssCompilerPass(
+          new CollectMixinDefinitions(tree.getMutatingVisitController(), errorMgr)));
+    l.add(new WrapLegacyCssCompilerPass(
+          new ProcessComponents<Object>(tree.getMutatingVisitController(), errorMgr, null)));
+
     CollectProvideNamespaces collectProvides = new CollectProvideNamespaces(
         tree.getVisitController());
-    collectProvides.runPass();
-    new CheckMissingRequire(
+    l.add(new WrapLegacyCssCompilerPass(collectProvides));
+    l.add(new WrapLegacyCssCompilerPass(new CheckMissingRequire(
         tree.getVisitController(),
         errorMgr,
         collectProvides.getFilenameProvideMap(),
         collectProvides.getFilenameRequireMap(),
         collectProvides.getDefProvideMap(),
-        collectProvides.getDefmixinProvideMap()).runPass();
+        collectProvides.getDefmixinProvideMap())));
+
+    JobDescriptionBuilder jobBuilder = new JobDescriptionBuilder();
+    jobBuilder.setSuppressDependencyCheck(true);
+    JobDescription job = jobBuilder.getJobDescription();
+    for (NewCssCompilerPass pass : l) {
+      pass.run(job, tree, errorMgr);
+    }
   }
 
   @Test
