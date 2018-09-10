@@ -8,14 +8,41 @@ jobs:
   pool:
     vmImage: 'ubuntu-16.04'
   steps:
-  - script: echo hello from Linux
+  - task: Maven@3
+   inputs:
+     mavenPomFile: 'pom.xml'
+     mavenOptions: '-Xmx3072m'
+     javaHomeOption: 'JDKVersion'
+     jdkVersionOption: '1.10'
+     jdkArchitectureOption: 'x64'
+     publishJUnitResults: false
+     testResultsFiles: '**/TEST-*.xml'
+     goals: 'package'
 - job: macOS
   pool:
     vmImage: 'xcode9-macos10.13'
   steps:
-  - script: echo hello from macOS
+  - task: Maven@3
+   inputs:
+     mavenPomFile: 'pom.xml'
+     mavenOptions: '-Xmx3072m'
+     javaHomeOption: 'JDKVersion'
+     jdkVersionOption: '1.10'
+     jdkArchitectureOption: 'x64'
+     publishJUnitResults: false
+     testResultsFiles: '**/TEST-*.xml'
+     goals: 'package'
 - job: Windows
   pool:
     vmImage: 'vs2017-win2016'
   steps:
-  - script: echo hello from Windows
+  - task: Maven@3
+   inputs:
+     mavenPomFile: 'pom.xml'
+     mavenOptions: '-Xmx3072m'
+     javaHomeOption: 'JDKVersion'
+     jdkVersionOption: '1.10'
+     jdkArchitectureOption: 'x64'
+     publishJUnitResults: false
+     testResultsFiles: '**/TEST-*.xml'
+     goals: 'package'
